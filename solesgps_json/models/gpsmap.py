@@ -9,20 +9,20 @@ class positions(models.Model):
 
     def run_scheduler_get_position(self):
         #positions_obj   =self.env['gpsmap.positions']        
-        vehicle_obj     =self.env['fleet.vehicle']
+        vehicle_obj                             =self.env['fleet.vehicle']
         
-        vehicle_args    =[]
-        vehicle_data    =vehicle_obj.search(vehicle_args, offset=0, limit=None, order=None)
+        vehicle_args                            =[]
+        vehicle_data                            =vehicle_obj.search(vehicle_args, offset=0, limit=None, order=None)
 
-        url = "http://solesgps.com/sitio_web/ajax/odoo.php?key=asfasfasf"
-        req = requests.get(url)
+        url                                     = "http://solesgps.com/sitio_web/ajax/odoo.php?key=asfasfasf"
+        req                                     = requests.get(url)
         req.raise_for_status()
-        json_positions = req.json()
+        json_positions                          = req.json()
         for position_row in json_positions: 
             print("===========================")
-            print(position_row)           
+            #print(position_row)           
             for vehicle in vehicle_data:        
-                print("VEHICULO=================",vehicle['imei'])
+                #print("VEHICULO=================",vehicle)
             
                 if(position_row['uniqueid']==vehicle['imei']):
                     print("CREANDO POSITIONS")
