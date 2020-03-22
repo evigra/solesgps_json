@@ -44,6 +44,6 @@ class positions(models.Model):
                     
                     self.create(position_create)    
                     
-                                    
-                    positions_data                         =self.search([('deviceid','=',vehicle['id'])], offset=0, limit=1, order='devicetime DESC')        
-                    print(positions_data)
+                    positions_data                  =self.search([('deviceid','=',vehicle['id'])], offset=0, limit=1, order='devicetime DESC')                            
+                    vehicle["positionid"]           =positions_data[0]
+                    vehicle_obj.write(vehicle)
