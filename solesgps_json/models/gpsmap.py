@@ -19,30 +19,30 @@ class positions(models.Model):
         req.raise_for_status()
         json_positions                          = req.json()
         for position_row in json_positions: 
-            print("===========================")
             #print(position_row)           
             for vehicle in vehicle_data:        
                 #print("VEHICULO=================",vehicle)
-            
                 if(position_row['uniqueid']==vehicle['imei']):
                     print("CREANDO POSITIONS")
-                    data_create={}        
-                    data_create['protocol']     =position_row['protocol']
-                    data_create['deviceid']     =vehicle['id']
-                    data_create['servertime']   =position_row['servertime']
-                    data_create['devicetime']   =position_row['devicetime']
-                    data_create['fixtime']      =position_row['fixtime']
-                    data_create['valid']        =position_row['valid']
-                    data_create['latitude']     =position_row['latitude']
-                    data_create['longitude']    =position_row['longitude']
-                    data_create['altitude']     =position_row['altitude']
-                    data_create['speed']        =position_row['speed']
-                    data_create['course']       =position_row['course']
-                    data_create['address']      =position_row['address']
-                    data_create['attributes']   =position_row['attributes']
-                    data_create['other']        =position_row['other']
-                    data_create['leido']        =position_row['leido']
-                    data_create['event']        =position_row['event']
+                    position_create={}        
+                    position_create['protocol']     =position_row['protocol']
+                    position_create['deviceid']     =vehicle['id']
+                    position_create['servertime']   =position_row['servertime']
+                    position_create['devicetime']   =position_row['devicetime']
+                    position_create['fixtime']      =position_row['fixtime']
+                    position_create['valid']        =position_row['valid']
+                    position_create['latitude']     =position_row['latitude']
+                    position_create['longitude']    =position_row['longitude']
+                    position_create['altitude']     =position_row['altitude']
+                    position_create['speed']        =position_row['speed']
+                    position_create['course']       =position_row['course']
+                    position_create['address']      =position_row['address']
+                    position_create['attributes']   =position_row['attributes']
+                    position_create['other']        =position_row['other']
+                    position_create['leido']        =position_row['leido']
+                    position_create['event']        =position_row['event']
                     
-                    self.create(data_create)    
-
+                    self.create(position_create)    
+                    
+                    positions_data                         =self.search([], offset=0, limit=1, order='devicetime DESC')        
+                    print(positions_data)
