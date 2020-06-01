@@ -21,10 +21,7 @@ class positions(models.Model):
             for vehicle in vehicle_data:        
                 if(position_row['uniqueid']==vehicle['imei']):
                     print("CREANDO POSITIONS USANDO JSON =======")
-                    position_previa                 =vehicle["positionid"].devicetime
-                    
-                    print("CREANDO ", position_previa)
-                    
+                                        
                     position_create={}        
                     position_create['protocol']     =position_row['protocol']
                     position_create['deviceid']     =vehicle['id']
@@ -45,5 +42,7 @@ class positions(models.Model):
                     self.create(position_create)    
                     
                     positions_data                  =self.search([('deviceid','=',vehicle['id'])], offset=0, limit=1, order='devicetime DESC')                            
-                    vehicle["positionid"]           =positions_data[0]
-                    vehicle_obj.write(vehicle)
+                    
+                    if(vehicle["positionid"].devicetime > position_row['devicetime']):
+                        vehicle["positionid"]       =positions_data[0]
+                        vehicle_obj.write(vehicle)
