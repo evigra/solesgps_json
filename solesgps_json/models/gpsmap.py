@@ -43,7 +43,7 @@ class positions(models.Model):
                     
                     positions_data                  =self.search([('deviceid','=',vehicle['id'])], offset=0, limit=1, order='devicetime DESC')                            
                     
-                    if(vehicle["positionid"].devicetime < position_row['devicetime']):
-                        vehicle["positionid"]       =positions_data[0]
-                        vehicle_obj.write(vehicle)
-                        print("ACTUALIZANDO DEVICE =======")
+                    #if(vehicle["positionid"].devicetime < position_row['devicetime']):
+                    #    vehicle["positionid"]       =positions_data[0]
+                    #    vehicle_obj.write(vehicle)
+                    #    print("ACTUALIZANDO DEVICE =======")
