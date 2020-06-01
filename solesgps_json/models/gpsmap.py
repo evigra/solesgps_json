@@ -8,7 +8,6 @@ class positions(models.Model):
     _inherit = "gpsmap.positions"
 
     def run_scheduler_get_position(self):
-        #positions_obj   =self.env['gpsmap.positions']        
         vehicle_obj                             =self.env['fleet.vehicle']
         
         vehicle_args                            =[]
@@ -18,12 +17,14 @@ class positions(models.Model):
         req                                     = requests.get(url)
         req.raise_for_status()
         json_positions                          = req.json()
-        for position_row in json_positions: 
-            #print(position_row)           
+        for position_row in json_positions:            
             for vehicle in vehicle_data:        
-                #print("VEHICULO=================",vehicle)
                 if(position_row['uniqueid']==vehicle['imei']):
-                    print("CREANDO POSITIONS")
+                    print("CREANDO POSITIONS USANDO JSON =======")
+                    position_previa                 =vehicle["positionid"]
+                    
+                    print("CREANDO ", position_previa)
+                    
                     position_create={}        
                     position_create['protocol']     =position_row['protocol']
                     position_create['deviceid']     =vehicle['id']
@@ -40,8 +41,7 @@ class positions(models.Model):
                     position_create['attributes']   =position_row['attributes']
                     position_create['other']        =position_row['other']
                     position_create['leido']        =position_row['leido']
-                    position_create['event']        =position_row['event']
-                    
+                    position_create['event']        =position_row['event']              
                     self.create(position_create)    
                     
                     positions_data                  =self.search([('deviceid','=',vehicle['id'])], offset=0, limit=1, order='devicetime DESC')                            
