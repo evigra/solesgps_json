@@ -46,3 +46,4 @@ class positions(models.Model):
                     if(vehicle["positionid"].devicetime > position_row['devicetime']):
                         vehicle["positionid"]       =positions_data[0]
                         vehicle_obj.write(vehicle)
+                        print("ACTUALIZANDO DEVICE =======")
