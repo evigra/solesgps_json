@@ -21,7 +21,7 @@ class positions(models.Model):
             for vehicle in vehicle_data:        
                 if(position_row['uniqueid']==vehicle['imei']):
                     print("CREANDO POSITIONS USANDO JSON =======")
-                    position_previa                 =vehicle["positionid"]
+                    position_previa                 =vehicle["positionid"].devicetime
                     
                     print("CREANDO ", position_previa)
                     
