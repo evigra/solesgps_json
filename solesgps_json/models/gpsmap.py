@@ -36,7 +36,7 @@ class positions(models.Model):
                     position_create['course']       =position_row['course']
                     position_create['address']      =position_row['address']
                     position_create['attributes']   =position_row['attributes']
-                    position_create['other']        =position_row['other']
+                    #position_create['other']        =position_row['other']
                     position_create['leido']        =position_row['leido']
                     position_create['event']        =position_row['event']              
                     self.create(position_create)    
