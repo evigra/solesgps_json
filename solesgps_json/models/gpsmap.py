@@ -36,7 +36,7 @@ class positions(models.Model):
                     position_create['course']       =position_row['course']
                     position_create['address']      =position_row['address']
                     position_create['attributes']   =position_row['attributes']
-                    if(int(position_row['speed'])<1):                    
+                    if(float(position_row['speed'])<1):                    
                         position_create['status']   ="deviceStopped"
                     else:    
                         position_create['status']   ="deviceMoving"
