@@ -4,6 +4,8 @@ import json
 import requests
 from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models, _
+
+
 class positions(models.Model):
     _inherit = "gpsmap.positions"
 
