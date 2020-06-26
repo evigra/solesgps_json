@@ -19,6 +19,8 @@ class positions(models.Model):
         req                                     = requests.get(url)
         req.raise_for_status()
         json_positions                          = req.json()
+        
+        print("ENCONTRADAS POSITIONS USANDO JSON ( %s )=======",%(len(json_positions)))
         for position_row in json_positions:            
             for vehicle in vehicle_data:        
                 if(position_row['uniqueid']==vehicle['imei']):
@@ -46,5 +48,5 @@ class positions(models.Model):
                     position_create['event']        =position_row['event']              
                     self.create(position_create)    
                     
-                    positions_data                  =self.search([('deviceid','=',vehicle['id'])], offset=0, limit=1, order='devicetime DESC')                                               
+                    #positions_data                  =self.search([('deviceid','=',vehicle['id'])], offset=0, limit=1, order='devicetime DESC')                                               
                     
