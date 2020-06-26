@@ -17,7 +17,6 @@ class positions(models.Model):
 
         url                                     = "http://solesgps.com/sitio_web/ajax/odoo.php?key=asfasfasf"
         req                                     = requests.get(url)
-        """
         req.raise_for_status()
         json_positions                          = req.json()
         for position_row in json_positions:            
@@ -48,4 +47,4 @@ class positions(models.Model):
                     self.create(position_create)    
                     
                     positions_data                  =self.search([('deviceid','=',vehicle['id'])], offset=0, limit=1, order='devicetime DESC')                                               
-        """
+                    
