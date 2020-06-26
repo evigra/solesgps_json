@@ -20,7 +20,7 @@ class positions(models.Model):
         req.raise_for_status()
         json_positions                          = req.json()
         
-        print("ENCONTRADAS POSITIONS USANDO JSON  %s =======",%(json_positions))
+        print("ENCONTRADAS POSITIONS USANDO JSON   ======= ", len(json_positions))
         for position_row in json_positions:            
             for vehicle in vehicle_data:        
                 if(position_row['uniqueid']==vehicle['imei']):
