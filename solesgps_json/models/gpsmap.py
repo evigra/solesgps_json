@@ -21,6 +21,7 @@ class positions(models.Model):
         json_positions                          = req.json()
         
         print("ENCONTRADAS POSITIONS USANDO JSON   ======= ", len(json_positions))
+        print(json_positions)
         for position_row in json_positions:            
             for vehicle in vehicle_data:        
                 if(position_row['uniqueid']==vehicle['imei']):
